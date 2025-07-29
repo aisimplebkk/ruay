@@ -104,7 +104,7 @@ export default function PaymentPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 pb-24">
       <div className="bg-gradient-to-b from-[#1a1625] to-[#2d1b69] p-8 rounded-b-3xl">
         <div className="flex items-center justify-between mb-4">
           <Link href="/lottery/selection" className="text-white text-2xl">←</Link>
@@ -151,7 +151,7 @@ export default function PaymentPage() {
             </div>
             <div className="flex justify-between pt-4 border-t-2 border-slate-200">
               <span className="font-bold text-slate-900">ยอดรวม:</span>
-              <span className="font-bold text-purple-700 text-lg">฿{totalPrice}</span>
+              <span className="font-bold text-purple-700 text-lg">฿{parseInt(totalPrice).toLocaleString()}</span>
             </div>
             <div className="flex items-center gap-2 bg-green-50 rounded-lg p-3">
               <span className="text-green-700">🛡️</span>

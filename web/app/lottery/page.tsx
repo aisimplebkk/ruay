@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const lotteryNumbers = [
@@ -9,8 +9,24 @@ const lotteryNumbers = [
 
 export default function LotteryPage() {
   const [kycVerified] = useState(true); // Set to true for demo
-  const [currentPeriod] = useState("1-15 Feb 2025");
+  const [currentPeriod, setCurrentPeriod] = useState("");
   const [selectedNumbers, setSelectedNumbers] = useState<string[]>([]);
+
+  useEffect(() => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.toLocaleString("en-US", { month: "short" });
+    const day = now.getDate();
+    let period = "";
+    if (day <= 15) {
+      period = `1-15 ${month} ${year}`;
+    } else {
+      // Get last day of month
+      const lastDay = new Date(year, now.getMonth() + 1, 0).getDate();
+      period = `16-${lastDay} ${month} ${year}`;
+    }
+    setCurrentPeriod(period);
+  }, []);
 
   const handleNumberSelect = (number: string) => {
     if (selectedNumbers.includes(number)) {
@@ -22,7 +38,7 @@ export default function LotteryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 pb-24">
       <div className="bg-gradient-to-b from-[#1a1625] to-[#2d1b69] p-8 text-center rounded-b-3xl">
         <h1 className="text-3xl font-bold text-white mb-2">ซื้อสลากกินแบ่ง</h1>
         <p className="text-lg text-slate-200 mb-4">เลือกหมายเลข 6 หลักที่คุณชื่นชอบ ราคาสลากละ ฿80</p>
@@ -68,7 +84,7 @@ export default function LotteryPage() {
               </div>
               {/* Right section */}
               <div className="w-10 h-full flex items-center justify-center bg-purple-500">
-                <span className="text-white text-sm font-bold rotate-180 writing-vertical">สลากคุ้ม</span>
+                <span className="text-white text-sm font-bold writing-vertical">สลากคุ้ม</span>
               </div>
             </button>
           ))}

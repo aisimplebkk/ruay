@@ -38,7 +38,7 @@ export default function TrackingPage() {
   const [selectedPeriod, setSelectedPeriod] = useState("current");
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 pb-24">
       <div className="bg-gradient-to-b from-[#1a1625] to-[#2d1b69] p-8 rounded-b-3xl text-center">
         <h1 className="text-3xl font-bold text-white mb-2">My Lottery Tickets</h1>
         <p className="text-lg text-slate-200 mb-4">Track your lottery tickets and insurance coverage</p>
